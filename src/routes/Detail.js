@@ -1,42 +1,41 @@
-import React from "react";
-import Movie_detail from "../components/Movie_detail";
+import React from 'react'
+import MovieDetail from '../components/Movie_detail'
 
-class Detail extends React.Component{
-    componentDidMount(){
-        // console.log(this.props);
-        const {location, history} = this.props;
-        if(location.state === undefined){
-            history.push("/");
-        }
+class Detail extends React.Component {
+  componentDidMount() {
+    const { location, history } = this.props
+    if (location.state === undefined) {
+      history.push('/')
     }
-    render(){
-        const {location} = this.props;
-        const poster = location.state.poster;
-        const title = location.state.title;
-        const year = location.state.year;
-        const rating = location.state.rating;
-        const genres = location.state.genres;
-        const summary = location.state.summary;
+  }
+  render() {
+    const locationState = this.props.location.state
+    const poster = locationState.poster
+    const title = locationState.title
+    const year = locationState.year
+    const rating = locationState.rating
+    const genres = locationState.genres
+    const summary = locationState.summary
 
-        if(location.state){
-            return (
-                <div className="movies">
-                    {
-                    <Movie_detail 
-                        poster={poster} 
-                        year={year}
-                        title={title}
-                        genres={genres}
-                        rating={rating} 
-                        summary={summary}
-                    />
-                    }
-                </div>
-            );
-        } else {
-            return null;
-        }
+    if (locationState) {
+      return (
+        <div className="movies">
+          {
+            <MovieDetail
+              poster={poster}
+              year={year}
+              title={title}
+              genres={genres}
+              rating={rating}
+              summary={summary}
+            />
+          }
+        </div>
+      )
+    } else {
+      return null
     }
+  }
 }
 
-export default Detail;
+export default Detail
